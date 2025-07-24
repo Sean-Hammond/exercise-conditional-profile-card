@@ -30,14 +30,25 @@ function render(variables = {}) {
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
+  // Sorry about my indenting, it is automatically changing it for me after I type
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name != null ? variables.name : ""} ${
-    variables.lastName
+          <h1>${
+            variables.name === null && variables.lastName === null
+              ? "My"
+              : variables.name
+          } ${
+    variables.name != null && variables.lastName != null
+      ? variables.lastName
+      : "Name"
   }</h1>
-          <h2>Role${variables.role}</h2>
-          <h3>${variables.city}, ${variables.country}</h3>
+          <h2>${
+            variables.role !== null ? variables.role : "Unspecified Role"
+          }</h2>
+          <h3>${variables.city !== null ? variables.role : "City"}, ${
+    variables.country !== null ? variables.role : "Country"
+  }</h3>
           <ul class="${variables.socialMediaPosition}">
             <li><a href="${
               variables.twitter
